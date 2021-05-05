@@ -33,7 +33,8 @@
     "node-sass": "^4.12.0",
     "prettier": "^2.2.1",
     "sass-loader": "^8.0.2",
-    "typescript": "~4.1.5"
+    "typescript": "~4.1.5",
+    "vue-cli-plugin-pug": "~2.0.0"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
