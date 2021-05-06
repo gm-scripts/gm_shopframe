@@ -1,6 +1,5 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import { prop } from "vue-class-component";
 import { config } from "../ts/Fetcher";
 
 export default defineComponent({
@@ -13,8 +12,8 @@ export default defineComponent({
     }
 
     function buy(prodIndex: string) {
-      fetch("http://localhost:3000/buy", { method: "post", body: prodIndex });
-      postMessage({ type: "gm_window_close" }, "http:/localhost:8080/");
+      fetch("https://gm_bikerental/buy", { method: "post", body: prodIndex });
+      postMessage({ type: "gm_window_close" }, "https:/gm_bikerental/");
     }
 
     return {
@@ -40,28 +39,28 @@ export default defineComponent({
 </script>
 
 <template lang="pug">
-.product-card-container( :class="{ 'moreinfo': flipped }")
+.product-card-container(:class="{ moreinfo: flipped }")
   .product-card
     .front
       .img-container
-        .img( :style="{ backgroundImage: `url('./${props.image}')`}" )
+        .img(:style="{ backgroundImage: `url('./${props.image}')` }")
       .info
-        h1.productname {{ props.name }} 
+        h1.productname {{ props.name }}
         .pricetag {{ props.price }}
       .btns-container
         .btns
-          .btn-container( @click="flip()" )
+          .btn-container(@click="flip()")
             .btn.moreinfo {{ config.langMoreInfo }}
-          .btn-container( @click="buy(props.index)" )
+          .btn-container(@click="buy(props.index)")
             .btn.buybtn {{ config.langBuy }}
     .back
       .textcontainer 
-        .textcontent(v-for="paragraph in props.additional") {{ paragraph}}
+        .textcontent(v-for="paragraph in props.additional") {{ paragraph }}
       .back-btn-container-outer
         .back-btn-container-inner
           .null
           .btn-container
-            .bbtn( @click="flip()" ) {{ config.langBack }}
+            .bbtn(@click="flip()") {{ config.langBack }}
           .null
 </template>
 
@@ -93,7 +92,7 @@ export default defineComponent({
         background-repeat: no-repeat
         margin-top: 2vh
         height: 27.5vh
-        100%
+        width: 100%
         padding: 5%
       .info
         margin: 2vh
@@ -132,7 +131,7 @@ export default defineComponent({
               .btn
                 transform: scale(1.03) translateY(-10%)
                 background-color: var(--brand)
-                box-shadow: 0 0.75vh 1.5vh  var(--brand-transparent)
+                box-shadow: 0 0.75vh 1.5vh var(--brand-transparent)
                 transition: transform 0.15s, background-color 0.1s, box-shadow 0.15s
     .back
       transform: rotateY(180deg)
@@ -163,7 +162,7 @@ export default defineComponent({
               .bbtn
                 transform: scale(1.03) translateY(-10%)
                 background-color: var(--brand)
-                box-shadow: 0 0.75vh 1.5vh  var(--brand-transparent)
+                box-shadow: 0 0.75vh 1.5vh var(--brand-transparent)
                 transition: transform 0.15s, background-color 0.1s, box-shadow 0.15s
   &.moreinfo
     .product-card

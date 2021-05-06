@@ -12,7 +12,7 @@ export default defineComponent({
 
     function closeWindow(): void {
       windowClosed.value = true;
-      fetch("http://localhost:3000/close", { method: "post" });
+      fetch("https://gm_bikerental/close", { method: "post" });
     }
     function openWindow(): void {
       windowClosed.value = false;
@@ -55,11 +55,23 @@ export default defineComponent({
 </script>
 
 <template lang="pug">
-#storewindow( ref="root" :style="{ '--scale': config.scale, '--bg-primary': config.bgPrimary, '--bg-secondary': config.bgSecondary, '--trafficlight-active': config.tlActive, '--trafficlight-inactive': config.tlInactive }" :class="{closed: windowClosed}" )
+#storewindow(
+  ref="root",
+  :style="{ '--scale': config.scale, '--bg-primary': config.bgPrimary, '--bg-secondary': config.bgSecondary, '--trafficlight-active': config.tlActive, '--trafficlight-inactive': config.tlInactive }",
+  :class="{ closed: windowClosed }"
+)
   .gm-frame {{ config.langShopname }}
-    .close-btn( @click="closeWindow" )
+    .close-btn(@click="closeWindow")
   .card-container
-    ProductCard( v-for="p in products" :key="p.id" :index="p.id" :name="p.name" :price="p.price" :image="p.image" :additional="p.additionalInfo")
+    ProductCard(
+      v-for="p in products.products",
+      :key="p.id",
+      :index="p.id",
+      :name="p.name",
+      :price="p.price",
+      :image="p.image",
+      :additional="p.additionalInfo"
+    )
 </template>
 
 <style lang="sass">

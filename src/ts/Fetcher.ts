@@ -11,22 +11,39 @@ const config = ref({
   langBuy: "Jetzt Mieten",
   langBack: "Umdrehen",
 });
-const products = ref<unknown[]>([]);
+const products = ref({
+  products: [
+    {
+      id: "0",
+      name: "Motorroller",
+      price: "50000€",
+      image: "scooter.png",
+      additionalInfo: ["blah", "hi"],
+    },
+    {
+      id: "0",
+      name: "Motorroller",
+      price: "50000€",
+      image: "scooter.png",
+      additionalInfo: ["blah", "hi"],
+    },
+  ],
+});
 
 function fetchData(): void {
-  fetch("http://localhost:3000/config", {
+  fetch("https://gm_bikerental/config", {
     method: "post",
   })
     .then((res) => res.json())
     .then((data) => {
       config.value = { ...data };
     });
-  fetch("http://localhost:3000/products", {
+  fetch("https://gm_bikerental/products", {
     method: "post",
   })
     .then((res) => res.json())
     .then((data) => {
-      products.value = [...data];
+      products.value = { ...data };
     });
 }
 
