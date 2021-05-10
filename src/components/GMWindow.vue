@@ -8,7 +8,7 @@ export default defineComponent({
   setup(props) {
     const draggable = ref(props.isDraggable);
     const root = ref<HTMLDivElement | null>(null);
-    let windowClosed = ref(false);
+    let windowClosed = ref(true);
 
     function closeWindow(): void {
       windowClosed.value = true;
@@ -32,6 +32,11 @@ export default defineComponent({
           case "gm_window_close":
             closeWindow();
             break;
+        }
+      });
+      window.addEventListener("keydown", (e) => {
+        if (e.keyCode === 27) {
+          closeWindow();
         }
       });
     });
@@ -64,7 +69,7 @@ export default defineComponent({
     .close-btn(@click="closeWindow")
   .card-container
     ProductCard(
-      v-for="p in products.products",
+      v-for="p in products",
       :key="p.id",
       :index="p.id",
       :name="p.name",
@@ -87,7 +92,7 @@ export default defineComponent({
   --cardframe: #5b5b69
   --text-color: #e7e7e7
 
-  background-color: #4a4a55
+  background-color: var(--bg-primary)
   user-select: none
   width: calc(var(--scale) * 90vh)
   height: calc(var(--scale) * 60vh)
@@ -135,7 +140,7 @@ export default defineComponent({
     text-align: center
     background-color: var(--bg-secondary)
     .close-btn
-      background-color: var(--bg-primary)
+      background-color: var(--trafficlight-inactive)
       height: calc(var(--scale) * 1.5vh)
       width: calc(var(--scale) * 1.5vh)
       position: absolute

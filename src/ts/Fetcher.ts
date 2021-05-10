@@ -11,24 +11,7 @@ const config = ref({
   langBuy: "Jetzt Mieten",
   langBack: "Umdrehen",
 });
-const products = ref({
-  products: [
-    {
-      id: "0",
-      name: "Motorroller",
-      price: "50000€",
-      image: "scooter.png",
-      additionalInfo: ["blah", "hi"],
-    },
-    {
-      id: "0",
-      name: "Motorroller",
-      price: "50000€",
-      image: "scooter.png",
-      additionalInfo: ["blah", "hi"],
-    },
-  ],
-});
+const products = ref<unknown[]>([]);
 
 function fetchData(): void {
   fetch("https://gm_bikerental/config", {
@@ -43,7 +26,7 @@ function fetchData(): void {
   })
     .then((res) => res.json())
     .then((data) => {
-      products.value = { ...data };
+      products.value = [...data];
     });
 }
 
