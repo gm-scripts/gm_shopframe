@@ -13,7 +13,6 @@ export default defineComponent({
 
     function buy(prodIndex: string) {
       fetch("https://gm_bikerental/buy", { method: "post", body: prodIndex });
-      postMessage({ type: "gm_window_close" }, "https:/gm_bikerental/");
     }
 
     return {
