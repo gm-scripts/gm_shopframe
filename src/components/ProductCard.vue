@@ -91,7 +91,7 @@ export default defineComponent({
         background-position: center
         background-repeat: no-repeat
         margin-top: 2vh
-        height: 27.5vh
+        height: 24vh
         width: 100%
         padding: 5%
       .info
@@ -138,11 +138,14 @@ export default defineComponent({
       .textcontainer
         height: 40.5vh
         padding: 3vh
+        .textcontent
+          font-size: 2vh
       .back-btn-container-outer
         $gap: 2vh
         padding: 0.5vh $gap
         height: 6vh
         .back-btn-container-inner
+          font-size: 2vh
           width: 100%
           display: grid
           grid-template-columns: 1fr 5fr 1fr
